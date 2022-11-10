@@ -92,7 +92,7 @@ func (c *Client) Pull(ctx context.Context, ref string, opts ...RemoteOpt) (_ Ima
 		}
 	}
 
-	fmt.Printf("debug: pullCtx %#v\n", pullCtx)
+	fmt.Printf("debug: pullCtx %#v\n, snapshotter :%s", pullCtx, pullCtx.SnapshotterOpts[0])
 	tmpBuf, _ := json.Marshal(pullCtx)
 	fmt.Printf("debug: pullCtx %s\n", string(tmpBuf))
 	fmt.Printf("debug: ref %#v\n", ref)

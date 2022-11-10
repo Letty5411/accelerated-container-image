@@ -101,6 +101,7 @@ func rpull(ctx context.Context, client *containerd.Client, ref string, sn string
 
 	labels := commands.LabelArgs(config.Labels)
 
+	fmt.Printf("debug: config %#v\n", config)
 	opts := []containerd.RemoteOpt{
 		containerd.WithPullLabels(labels),
 		containerd.WithResolver(config.Resolver),
