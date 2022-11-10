@@ -30,6 +30,8 @@ import (
 	ocispec "github.com/opencontainers/image-spec/specs-go/v1"
 	"golang.org/x/sync/errgroup"
 	"golang.org/x/sync/semaphore"
+
+	"encoding/json"
 )
 
 // Pull downloads the provided content into containerd's content store
@@ -90,8 +92,10 @@ func (c *Client) Pull(ctx context.Context, ref string, opts ...RemoteOpt) (_ Ima
 		}
 	}
 
-	fmt.Printf("debug: pullCtx %#v", pullCtx)
-	fmt.Printf("debug: ref %#v", ref)
+	fmt.Printf("debug: pullCtx %#v\n", pullCtx)
+	tmpBuf, _ := json.Marshal(pullCtx)
+	fmt.Printf("debug: pullCtx %s\n", string(tmpBuf))
+	fmt.Printf("debug: ref %#v\n", ref)
 
 	img, err := c.fetch(ctx, pullCtx, ref, 1)
 	if err != nil {
